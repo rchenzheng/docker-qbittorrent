@@ -1,0 +1,20 @@
+---
+version: "3"
+services:
+  qbittorrent:
+    image: richarddoggo/docker-qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Toronto
+      - UMASK_SET=022
+      - WEBUI_PORT=8080
+    volumes:
+      - /volume1/docker/qbittorrent/config:/config
+      - /volume1/docker/qbittorrent/downloads:/downloads
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8080:8080
+    restart: unless-stopped
